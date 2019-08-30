@@ -1,0 +1,222 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #666;
+	background: #f2f2f2; 
+	font-size: 1em;
+	line-height: 1.5em;
+	
+	padding-top: 80px; /* Relleno superior igual a la altura de la cabecera*/
+}
+ 
+/*h1 {
+	font-size: 2.3em;
+	line-height: 1.3em;
+	margin: 15px 0;
+	text-align: center;
+	font-weight: 300;
+}
+ 
+p {
+	margin: 0 0 1.5em 0;
+}
+ 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+#main-header {
+	background: #333;
+	color: white;
+	height: 80px;
+	
+	width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página 
+	left: 0; /* Posicionamos la cabecera al lado izquierdo 
+	top: 0; /* Posicionamos la cabecera pegada arriba 
+	position: fixed; /* Hacemos que la cabecera tenga una posición fija 
+}
+}	
+*/
+#main-header a {
+	color: white;
+	padding-bottom: 10px;
+}
+				
+#main-content {
+	background: white;
+	width: 90%;
+	max-width: 800px;
+	margin: 20px auto;
+	box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+ 
+#main-content header,
+#main-content .content {
+	padding: 40px;
+}
+
+#main-footer {
+	background: #333;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin-top: 40px;
+}
+
+#main-footer p {
+	margin: 0;
+}
+
+#main-footer a {
+	color: white;
+}	
+
+.card {
+	position: static;	
+}
+
+.col-md-4 {
+	position: static;	
+}
+
+.bg-success {
+	text-align: center;
+	position: center;
+	display:block;
+    width:100%;	
+}	
+
+.bg-primary {
+	text-align: center;
+	position: center;
+	display:block;
+    width:100%;	
+}	
+
+.bg-danger {
+	text-align: center;
+	position: center;
+	display:block;
+    width:100%;	
+}	
+
+.col-md-4 {
+	transition:box-shadow 2s, transform 500ms, filter 500ms ease-in-out;	 
+	padding-left: 0px;
+	padding-right: 30px;
+}
+
+.col-md-4:hover{
+	transform: scale(1.05);
+	box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+} 
+
+.card-title {
+	text-shadow: 0px 0px 9px #508AD3;
+}
+
+.card.mb-4.bg-success {
+	text-align: center;
+	position: center;
+	display:block;
+    width:100%;
+	justify-content: center;	
+}
+
+.container-bg {
+	padding: 10px;
+	margin: 10px;
+}
+
+.form {
+  align-self: center;
+  padding: 2em;
+  background: rgba(40, 84, 121, 0.89);
+}
+
+.form button {
+  padding: 20px;
+  background: #eee;
+  color: #000;
+  border: none;
+}
+
+#resultado {
+  margin-bottom: 5px;
+  padding: 5px;
+  font-size: 24px;
+  background: #000;
+  border: none;
+  color: #eee;
+  text-align: right;
+}
+
+.botones {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "b7 b8 b9 bs"
+    "b4 b5 b6 br"
+    "b1 b2 b3 bm"
+    "bac b0 bD bd"
+    "bi bi bi bi";
+  grid-gap: 5px;
+}
+
+#numD {
+  grid-area: bD;
+}
+#num0 {
+  grid-area: b0;
+}
+#num1 {
+  grid-area: b1;
+}
+#num2 {
+  grid-area: b2;
+}
+#num3 {
+  grid-area: b3;
+}
+#num4 {
+  grid-area: b4;
+}
+#num5 {
+  grid-area: b5;
+}
+#num6 {
+  grid-area: b6;
+}
+#num7 {
+  grid-area: b7;
+}
+#num8 {
+  grid-area: b8;
+}
+#num9 {
+  grid-area: b9;
+}
+#sumar {
+  grid-area: bs;
+}
+#restar {
+  grid-area: br;
+}
+#dividir {
+  grid-area: bd;
+}
+#multiplicar {
+  grid-area: bm;
+}
+#ac {
+  grid-area: bac;
+  background: rgb(223, 92, 31);
+  color: #eee;
+}
+#igual {
+  grid-area: bi;
+  background: rgba(61, 233, 45, 0.89);
+  color: #eee;
+}
