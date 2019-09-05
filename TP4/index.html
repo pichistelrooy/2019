@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es"></html>
 <head>
-	<title>Tp2</title>
+	<title>Tp4</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-grid.css">
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.css">
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <header class="header">Mercado No Libre</header>
 
@@ -22,18 +20,34 @@
 <body>
 
 	<aside>
-		
+		<div class="card bg-primary text-white">Carrito</div>	
+		<div class="card-deck">
+			<div class="card-body" id="carro">
+			</div>
+		</div>	
 	</aside>
 
-	<section>
-		<table id="productos"></table>
-	</section>
+	<div class="container">
+		<section>
+			<table id="productos"  class="table table-dark table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Precio</th>
+						<th>Acción</th>
+					</tr>
+				</thead>
+				<tbody class="table-primary">
+				</tbody>
+			</table>
+		</section>
+	</div>
 
 	<!--<footer class="footer">
 		<p class="pfooter">Posted by: Marcos Piccolini</p>
 		<p class="pfooter">Contact information: <a href="mailto:picho_xeneize@hotmail.com">
 		picho_xeneize@hotmail.com</a>.</p>
-	</footer>--> 
+	</footer>-->
 </body>
 
 <script src="js/functions.js"></script>
