@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es"></html>
+<head>
+	<title>Tp5</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<header class="header">Promises</header>
+
+<nav class="topnav">
+	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getAll()">GetAll</a>
+	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getById(0,10)">GetById</a>
+	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getCount()">GetTotal</a>
+</nav>
+<div id="spinner" style="display: none;" class="spinner-border text-primary"></div>
+<body>
+
+	<div class="container">
+		<section>
+			<table id="clientes"  class="table table-dark table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>EMAIL</th>
+						<th>GENDER</th>
+						<th>FIRSTNAME</th>
+						<th>LASTNAME</th>
+						<th>LASTCONNECTEDIP</th>
+					</tr>
+				</thead>
+				<tbody id="cuerpo" class="table-primary">
+				</tbody>
+			</table>
+		</section>
+	</div>
+
+	<!--<footer class="footer">
+		<p class="pfooter">Posted by: Marcos Piccolini</p>
+		<p class="pfooter">Contact information: <a href="mailto:picho_xeneize@hotmail.com">
+		picho_xeneize@hotmail.com</a>.</p>
+	</footer>-->
+</body>
+
+<script src="js/functions.js"></script>
+
+</html>
