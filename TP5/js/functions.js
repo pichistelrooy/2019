@@ -2,21 +2,87 @@ var datos = new Array();
 
 function getAll()
 {   
-    setTimeout(Resolve, 2000,
-        document.getElementById("spinner").style.visibility = "visible");
+    var promise1;
+    document.getElementById('spinner').style = "display: inline-block;";
+    setTimeout(() => {
+        promise1 = new Promise(function(Resolve,Reject){
+            datos = [];
+            var request = new XMLHttpRequest();
+            request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records');
+            request.responseType = 'text';
+            request.onload = function(){
+                if(request.status == 200){
+                    Resolve(request.response);
+                    //console.log(request.response);
+                    datos = JSON.parse(request.response);
+                    datos.reverse();
+                    document.getElementById("spinner").style = "display: none;";
+                    buildHtmlTable();
+                }
+                else{
+                    Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
+                    console.log("error");
+                }
+            }
+    
+            request.onerror = function(){
+                Reject(Error("Problemas de internet"));
+            }
+    
+            request.send();
+        }) 
+    }, 2000);
+    return promise1;
+}
+
+function getById(number1,number2)
+{
+    var promise1;
+    document.getElementById('spinner').style = "display: inline-block;";
+    setTimeout(() => {
+        promise1 = new Promise(function(Resolve,Reject){
+            datos = [];
+            var request = new XMLHttpRequest();
+            request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records?from=' 
+                        + number1.toString() + '&to=' + number2.toString());
+            request.responseType = 'text';
+            request.onload = function(){
+                if(request.status == 200){
+                    Resolve(request.response);
+                    //console.log(request.response);
+                    datos = JSON.parse(request.response);
+                    datos.reverse();
+                    document.getElementById("spinner").style = "display: none;";
+                    buildHtmlTable();
+                }
+                else{
+                    Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
+                    console.log("error");
+                }
+            }
+
+            request.onerror = function(){
+                Reject(Error("Problemas de internet"));
+            }
+
+            request.send();
+        })
+    }, 4000);
+    return promise1;
+}
+
+function getCount()
+{
     return new Promise(function(Resolve,Reject){
         datos = [];
         var request = new XMLHttpRequest();
-        request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records');
+        request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records/total');
         request.responseType = 'text';
         request.onload = function(){
             if(request.status == 200){
                 Resolve(request.response);
                 //console.log(request.response);
-                datos = JSON.parse(request.response);
-                datos.reverse();
-                document.getElementById("spinner").style.visibility = "hidden"
-                buildHtmlTable();
+                alert(request.response);
             }
             else{
                 Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
@@ -67,62 +133,5 @@ function buildHtmlTable() {
         td.innerHTML = cliente.last_connected_ip;
         tr.appendChild(td);   
         c++;
-    })
-}
-
-function getById(number1,number2)
-{
-    return new Promise(function(Resolve,Reject){
-        datos = [];
-        var request = new XMLHttpRequest();
-        request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records?from=' 
-                     + number1.toString() + '&to=' + number2.toString());
-        request.responseType = 'text';
-        request.onload = function(){
-            if(request.status == 200){
-                Resolve(request.response);
-                //console.log(request.response);
-                datos = JSON.parse(request.response);
-                datos.reverse();
-                buildHtmlTable();
-            }
-            else{
-                Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
-                console.log("error");
-            }
-        }
-
-        request.onerror = function(){
-            Reject(Error("Problemas de internet"));
-        }
-
-        request.send();
-    })
-}
-
-function getCount()
-{
-    return new Promise(function(Resolve,Reject){
-        datos = [];
-        var request = new XMLHttpRequest();
-        request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records/total');
-        request.responseType = 'text';
-        request.onload = function(){
-            if(request.status == 200){
-                Resolve(request.response);
-                //console.log(request.response);
-                alert(request.response);
-            }
-            else{
-                Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
-                console.log("error");
-            }
-        }
-
-        request.onerror = function(){
-            Reject(Error("Problemas de internet"));
-        }
-
-        request.send();
     })
 }
