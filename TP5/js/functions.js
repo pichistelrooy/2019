@@ -1,23 +1,37 @@
 var datos = new Array();
 
-function getAll()
-{   
+function getAll(){
+    var plugin1 = $('#pagination'),
+    totalRecords = 0,
+    records = [],
+    displayRecords = [],
+    recPerPage = 10,
+    page = 1,
+    totalPages = 0;
+
+    var cuerpo = document.getElementById("cuerpo"); 
+    while(cuerpo.hasChildNodes())    {
+        //if (cuerpo.childElementCount > 1){
+            cuerpo.removeChild(cuerpo.lastChild);
+            console.log(cuerpo.childElementCount);
+        //}
+    }
+        
     var promise1;
     document.getElementById('spinner').style = "display: inline-block;";
     setTimeout(() => {
         promise1 = new Promise(function(Resolve,Reject){
-            datos = [];
             var request = new XMLHttpRequest();
             request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records');
             request.responseType = 'text';
             request.onload = function(){
                 if(request.status == 200){
                     Resolve(request.response);
-                    //console.log(request.response);
-                    datos = JSON.parse(request.response);
-                    datos.reverse();
+                    records = JSON.parse(request.response);
+                    totalRecords = records.length;
+                    totalPages = Math.ceil(totalRecords / recPerPage);
                     document.getElementById("spinner").style = "display: none;";
-                    buildHtmlTable();
+                    apply_pagination();
                 }
                 else{
                     Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
@@ -32,16 +46,58 @@ function getAll()
             request.send();
         }) 
     }, 2000);
-    return promise1;
-}
+
+	function generate_table() {
+		var tr;
+		$('#cuerpo').html('');
+		for (var i = 0; i < displayRecords.length; i++) {
+			tr = $('<tr/>');
+			tr.append("<td>" + displayRecords[i].id + "</td>");
+			tr.append("<td>" + displayRecords[i].email + "</td>");
+            tr.append("<td>" + displayRecords[i].gender + "</td>");
+            tr.append("<td>" + displayRecords[i].first_name + "</td>");
+            tr.append("<td>" + displayRecords[i].last_name + "</td>");
+            tr.append("<td>" + displayRecords[i].last_connected_ip + "</td>");
+			$('#cuerpo').append(tr);
+		}
+	}
+	function apply_pagination() {
+		plugin1.twbsPagination({
+			totalPages: totalPages,
+			visiblePages: 6,
+			onPageClick: function (event, page) {
+				displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
+				endRec = (displayRecordsIndex) + recPerPage;
+				//console.log(displayRecordsIndex + 'ssssssssss'+ endRec);
+				displayRecords = records.slice(displayRecordsIndex, endRec);
+				generate_table();
+			}
+		});
+	}
+};
 
 function getById(number1,number2)
 {
+    var plugin1 = $('#pagination'),
+    totalRecords = 0,
+    records = [],
+    displayRecords = [],
+    recPerPage = 10,
+    page = 1,
+    totalPages = 0;
+
+    var cuerpo = document.getElementById("cuerpo"); 
+    while(cuerpo.hasChildNodes())    {
+        //if (cuerpo.childElementCount > 1){
+            cuerpo.removeChild(cuerpo.lastChild);
+            console.log(cuerpo.childElementCount);
+        //}
+    }
+        
     var promise1;
     document.getElementById('spinner').style = "display: inline-block;";
     setTimeout(() => {
         promise1 = new Promise(function(Resolve,Reject){
-            datos = [];
             var request = new XMLHttpRequest();
             request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records?from=' 
                         + number1.toString() + '&to=' + number2.toString());
@@ -49,11 +105,11 @@ function getById(number1,number2)
             request.onload = function(){
                 if(request.status == 200){
                     Resolve(request.response);
-                    //console.log(request.response);
-                    datos = JSON.parse(request.response);
-                    datos.reverse();
+                    records = JSON.parse(request.response);
+                    totalRecords = records.length;
+                    totalPages = Math.ceil(totalRecords / recPerPage);
                     document.getElementById("spinner").style = "display: none;";
-                    buildHtmlTable();
+                    apply_pagination2();
                 }
                 else{
                     Reject(Error("No se pudo comunicar con el servico: " + request.statusText));
@@ -68,13 +124,40 @@ function getById(number1,number2)
             request.send();
         })
     }, 4000);
-    return promise1;
+    
+    function generate_table2() {
+		var tr;
+		$('#cuerpo').html('');
+		for (var i = 0; i < displayRecords.length; i++) {
+			tr = $('<tr/>');
+			tr.append("<td>" + displayRecords[i].id + "</td>");
+			tr.append("<td>" + displayRecords[i].email + "</td>");
+            tr.append("<td>" + displayRecords[i].gender + "</td>");
+            tr.append("<td>" + displayRecords[i].first_name + "</td>");
+            tr.append("<td>" + displayRecords[i].last_name + "</td>");
+            tr.append("<td>" + displayRecords[i].last_connected_ip + "</td>");
+			$('#cuerpo').append(tr);
+		}
+	}
+	function apply_pagination2() {
+		plugin1.twbsPagination({
+			totalPages: totalPages,
+			visiblePages: 6,
+			onPageClick: function (event, page) {
+				displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
+				endRec = (displayRecordsIndex) + recPerPage;
+                //console.log(displayRecordsIndex + 'ssssssssss'+ endRec);
+				displayRecords = records.slice(displayRecordsIndex, endRec);
+				generate_table2();
+			}
+		});
+	}
 }
 
 function getCount()
 {
     return new Promise(function(Resolve,Reject){
-        datos = [];
+        //datos = [];
         var request = new XMLHttpRequest();
         request.open('GET','https://utn-2019-avanzada2-tp5.herokuapp.com/records/total');
         request.responseType = 'text';
@@ -99,7 +182,7 @@ function getCount()
 }
 
 // Builds the HTML Table out of myList.
-function buildHtmlTable() {
+/*function buildHtmlTable() {
     var cuerpo = document.getElementById("clientes"); 
     while(cuerpo.hasChildNodes())    {
         cuerpo.removeChild(cuerpo.firstChild);
@@ -109,7 +192,7 @@ function buildHtmlTable() {
     var tr = empTab.insertRow(rowCnt);      // TABLE ROW.
     tr = empTab.insertRow(rowCnt);
     var c = 0;
-    datos.forEach(cliente => 
+    records.forEach(cliente => 
     {
         if (c > 0) {
             tr = empTab.insertRow(rowCnt);
@@ -135,7 +218,8 @@ function buildHtmlTable() {
         c++;
     })
     
-    formatearTabla();
+    //formatearTabla();
+    //formatearTabla2();
 }
 
 function formatearTabla(){
@@ -161,4 +245,4 @@ function formatearTabla(){
         $('#clientes tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
         css('display','table-row').animate({opacity:1}, 300);
     });
-}
+}*/

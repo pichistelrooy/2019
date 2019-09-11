@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es"></html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/jquery.twbsPagination.min.js"></script>
 <head>
 	<title>Tp5</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -12,15 +14,11 @@
 </head>
 
 <script src="js/functions.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/paginator.js"></script>
-<script src="js/table.js"></script>
-
 
 <header class="header">Promises</header>
 <nav class="topnav">
 	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getAll()">GetAll</a>
-	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getById(0,10)">GetById</a>
+	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getById(0,40)">GetById</a>
 	<button class="btn btn-outline-success my-2 my-sm-0" onclick="getCount()">GetTotal</a>
 </nav>
 <div id="spinner" style="display: none;" class="spinner-border text-primary"></div>
@@ -39,9 +37,12 @@
 						<th>LASTCONNECTEDIP</th>
 					</tr>
 				</thead>
-				<tbody id="cuerpo" class="table-primary">
+				<tbody id="cuerpo">
 				</tbody>
 			</table>
+			<div id="pager">
+				<ul id="pagination" class="pagination-sm"></ul>
+			</div>
 		</section>
 	</div>
 
