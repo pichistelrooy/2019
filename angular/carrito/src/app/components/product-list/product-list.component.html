@@ -1,0 +1,21 @@
+<div class="col">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let producto of productos">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="product.html" title="View Product">{{ producto.name }}</a></h5>
+                    <p class="card-text">{{ producto.description }}</p>
+                    <div class="row">
+                        <div class="col" id="{{ producto.id }}">
+                            <p class="btn btn-danger btn-block">${{ producto.price }}</p>
+                            <p>Stock: {{ producto.stock }}</p>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="btn btn-success btn-block">Agregar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Home</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Panel de Administración
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/product-add" routerLinkActive="active">Agregar Producto</a>
+                <a class="dropdown-item">Modificar Producto</a>
+                <a class="dropdown-item">Eliminar Producto</a>
+                <a class="dropdown-item" routerLink="/product-list" routerLinkActive="active">Lista de Productos</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-success btn-sm ml-3" href="../product-chart/product-chart.component.html">
+                <i class="fa fa-shopping-cart"></i> Carrito
+                <span class="badge badge-light">3</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!--<router-outlet></router-outlet>-->

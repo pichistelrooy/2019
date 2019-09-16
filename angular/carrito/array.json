@@ -1,0 +1,46 @@
+{
+  "array": [
+    {
+      "id": 1,
+      "name": "Milka1",
+      "description": "Chocolate Milka",
+      "price": 25,
+      "stock": 500
+    },
+    {
+      "id": 2,
+      "name": "Atun1",
+      "description": "Atun La Campagnola",
+      "price": 110,
+      "stock": 230
+    },
+    {
+      "id": 3,
+      "name": "PAty1",
+      "description": "Hamburguesas Paty X4",
+      "price": 210,
+      "stock": 100
+    },
+    {
+      "id": 4,
+      "name": "Cerales1",
+      "description": "Cerales Tres Arroyos",
+      "price": 49,
+      "stock": 230
+    },
+    {
+      "id": 5,
+      "name": "Mermelada1",
+      "description": "mermelada de Frutilla La Campagnola",
+      "price": 110,
+      "stock": 40
+    },
+    {
+      "id": 6,
+      "name": "Cerales2",
+      "description": "Cerales Nesquik",
+      "price": 340,
+      "stock": 100
+    }
+  ]
+}
