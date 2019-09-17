@@ -5,21 +5,171 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-      <app-navbar></app-navbar>
+      <!--<app-navbar></app-navbar>-->
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">Home</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <!-- Dropdown -->
+          <li type="button" class="nav-item dropdown btn-success active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Panel de Administración
+            </a>
+            <div class="dropdown-menu">
+              <button class="dropdown-item" (click)="setAdd()">Agregar Producto</button>
+              <button class="dropdown-item" (click)="setModify()">Modificar Producto</button>
+              <button class="dropdown-item" (click)="setRemove()">Eliminar Producto</button>
+              <button class="dropdown-item">Lista de Productos</button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-success btn-sm ml-3" href="../product-chart/product-chart.component.html">
+              <i class="fa fa-shopping-cart"></i> Carrito
+              <span class="badge badge-light">3</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </nav>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <app-product-add></app-product-add>
+<div class="container" *ngIf="add">
+  <div class="card">
+    <h5 class="card-header">Administración</h5>
+    <div class="card-body">
+      <h5 class="card-title">Agregar Producto</h5>
+<!--<child-component [inpoutvariable]="lista"></child-component>-->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">ID</span>
+        </div>
+        <input type="text" class="form-control" id="id">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Nombre</span>
+        </div>
+        <input type="text" class="form-control" id="name">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Descripción</span>
+        </div>
+        <input type="text" class="form-control" id="description">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Precio</span>
+          <span class="input-group-text">$0.00</span>
+        </div>
+        <input type="text" class="form-control" id="price">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Stock</span>
+        </div>
+        <input type="text" class="form-control" id="stock">
+      </div>
+
+      <button class="btn btn-success" (click)="addProduct()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="remove">
+  <div class="card">
+    <h5 class="card-header">Administración</h5>
+    <div class="card-body">
+      <h5 class="card-title">Eliminar Producto</h5>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">ID</span>
+        </div>
+        <input type="text" class="form-control" id="idRemove">
+      </div>
+
+      <button class="btn btn-danger" (click)="removeProduct()">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="modify">
+  <div class="card">
+    <h5 class="card-header">Administración</h5>
+    <div class="card-body">
+      <h5 class="card-title">Modificar Producto</h5>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">ID</span>
+        </div>
+        <input type="text" class="form-control" id="idModify">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Nombre</span>
+        </div>
+        <input type="text" class="form-control" id="nameModify">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Descripción</span>
+        </div>
+        <input type="text" class="form-control" id="descriptionModify">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Precio</span>
+          <span class="input-group-text">$0.00</span>
+        </div>
+        <input type="text" class="form-control" id="priceModify">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Stock</span>
+        </div>
+        <input type="text" class="form-control" id="stockModify">
+      </div>
+
+      <button class="btn btn-primary" (click)="modifyProduct()">Modificar</button>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <app-product-list></app-product-list>
+    <div class="col">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let producto of productos">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><a href="product.html" title="View Product">{{ producto.name }}</a></h5>
+              <p class="card-text">{{ producto.description }}</p>
+              <div class="row">
+                <div class="col" id="{{ producto.id }}">
+                  <p class="btn btn-danger btn-block">${{ producto.price }}</p>
+                  <p>Stock: {{ producto.stock }}</p>
+                </div>
+                <div class="col">
+                  <a href="#" class="btn btn-success btn-block">Agregar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
