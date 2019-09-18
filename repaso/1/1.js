@@ -23,3 +23,8 @@ function borrar(){
     });
     console.log(lista);
 }
+
+function filter(){
+    sinRepetidos = lista.filter((valor, indiceActual, self) => self.indexOf(valor) === indiceActual);
+    console.log(sinRepetidos);
+}
