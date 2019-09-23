@@ -31,8 +31,6 @@ function sort() {
     loadData().then(r => {
         var field = document.getElementById("field").value;
         var sort = document.getElementById("sort").value;
-        var tbody = document.getElementById("table").getElementsByTagName("tbody")[0];
-
         var result = sortData(r, field, sort);
         renderTable(result);
     })
