@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
+import { ProductListComponent } from 'src/app/components/product-list/product-list.component';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { Producto } from 'src/app/models/producto';
 })
 export class AppComponent {
   title = 'carrito';
-  add = 0;
+
+  //productos = new Array<Producto>();
+  //producto = new Producto();
+
+  /*add = 0;
   modify = 0;
   remove = 0;
 
@@ -40,9 +45,9 @@ export class AppComponent {
     } else {
       this.remove = 1;
     }
-  }
+  }*/
 
-  productos = [];
+  /*productos = [];
 
   addProduct(){
     var id = document.getElementById("id").value;
@@ -88,5 +93,5 @@ export class AppComponent {
       }
       i++;
     });
-  }
+  }*/
 }

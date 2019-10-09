@@ -10,8 +10,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ProductChartComponent } from './components/product-chart/product-chart.component';
 import { ProductAddComponent } from './components/product-add/product-add.component';
-import { ProductModifyComponent } from './components/product-modify/product-modify.component';
-import { ProductRemoveComponent } from './components/product-remove/product-remove.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +20,7 @@ import { ProductRemoveComponent } from './components/product-remove/product-remo
     FooterComponent,
     ChartComponent,
     ProductChartComponent,
-    ProductAddComponent,
-    ProductModifyComponent,
-    ProductRemoveComponent
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,

@@ -83,71 +83,8 @@
   </div>
 </div>
 
-<div class="container" *ngIf="remove">
-  <div class="card">
-    <h5 class="card-header">Administración</h5>
-    <div class="card-body">
-      <h5 class="card-title">Eliminar Producto</h5>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">ID</span>
-        </div>
-        <input type="text" class="form-control" id="idRemove">
-      </div>
-
-      <button class="btn btn-danger" (click)="removeProduct()">Eliminar</button>
-    </div>
-  </div>
-</div>
-
-<div class="container" *ngIf="modify">
-  <div class="card">
-    <h5 class="card-header">Administración</h5>
-    <div class="card-body">
-      <h5 class="card-title">Modificar Producto</h5>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">ID</span>
-        </div>
-        <input type="text" class="form-control" id="idModify">
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Nombre</span>
-        </div>
-        <input type="text" class="form-control" id="nameModify">
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Descripción</span>
-        </div>
-        <input type="text" class="form-control" id="descriptionModify">
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Precio</span>
-          <span class="input-group-text">$0.00</span>
-        </div>
-        <input type="text" class="form-control" id="priceModify">
-      </div>
-
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Stock</span>
-        </div>
-        <input type="text" class="form-control" id="stockModify">
-      </div>
-
-      <button class="btn btn-primary" (click)="modifyProduct()">Modificar</button>
-    </div>
-  </div>
-</div>
-
+<ProductListComponent></ProductListComponent>
+<!--
 <div class="container">
   <div class="row">
     <div class="col">
@@ -172,4 +109,4 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
