@@ -39,5 +39,13 @@ export class StudentService {
       }
     })
   }
+
+  remove(studentId: number){
+    this.studentList.forEach(element => {
+      if (element.studentId == studentId){
+        this.studentList.pop();
+      }  
+    });
+  }
 }
 

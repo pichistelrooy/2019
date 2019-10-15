@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/models/student';
-import { StudentService } from 'src/app/services/student.service';
+//import { StudentService } from 'src/app/services/student.service';
+import { StudentAsyncService } from 'src/app/services/student-async.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,12 +11,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StudentModifyComponent implements OnInit {
   private student: Student;
-  constructor(private studentService: StudentService, private route: ActivatedRoute) { }
+  constructor(private studentAsyncService: StudentAsyncService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     let studentId = Number(this.route.snapshot.paramMap.get('id'));
     
-    this.student = this.studentService.getById(studentId);
+    this.studentAsyncService.getById(studentId)
+      .then(response =>{
+        this.student = response;
+      })
+      .catch(error =>{
+
+      })
   }
 
   modifyStudent()
@@ -26,7 +33,7 @@ export class StudentModifyComponent implements OnInit {
     this.student.email = this.student.email;
     this.student.address = this.student.address;
 
-    this.studentService.modify(this.student);
+    this.studentAsyncService.modify(this.student);
   }
 
 }

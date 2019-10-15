@@ -10,6 +10,8 @@
                     <th scope="col">First</th>
                     <th scope="col">Email</th>
                     <th scope="col">View</th>
+                    <th scope="col"></th>
+                    <!--<th scope="col"></th>-->
                   </tr>
                 </thead>
                 <tbody>
@@ -20,6 +22,7 @@
                     <td>{{ student.email }}</td>
                     <td><a class="btn btn-success btn-sm" [routerLink]="['/view/', student.studentId ]">View Details</a></td>
                     <td><a class="btn btn-danger btn-sm" [routerLink]="['/modify/', student.studentId ]">Modify</a></td>
+                    <!--<td><button type="button" class="btn btn-primary" (click)="remove(student.studentId)">Remove</button></td>-->
                   </tr>                  
                 </tbody>
               </table>
