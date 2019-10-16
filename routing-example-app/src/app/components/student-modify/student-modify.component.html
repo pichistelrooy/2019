@@ -36,6 +36,13 @@
                             <input type="text" name="address" [(ngModel)]="student.address" class="form-control form-control-ml"
                                 required>
                         </div>
+
+                        <div class="col-lg-4">
+                            <label for="">Career</label>
+                            <select name="career" [(ngModel)]="student.careerId" class="form-control form-control-ml">
+                                <option *ngFor="let career of careerList" [(ngValue)]="career.careerId">{{career.name}}</option>
+                            </select>
+                        </div>
                     </div>
 
                     <hr class="mb-4">

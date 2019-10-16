@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class StudentAsyncService {
   private apiURL = 'https://utn2019-avanzada2-tp8.herokuapp.com/api/students';
+  private apiURLCareer = 'https://utn2019-avanzada2-tp8.herokuapp.com/api/careers';
   constructor(private http: HttpClient) { }
 
   private studentList = new Array<Student>();
@@ -40,6 +41,11 @@ export class StudentAsyncService {
       })
     };
     return this.http.patch(this.apiURL + '/'  + student.studentId, student, httpOptions)
+      .toPromise();
+  }
+
+  getCareerAll() : Promise<any>{
+    return this.http.get(this.apiURLCareer)
       .toPromise();
   }
 }

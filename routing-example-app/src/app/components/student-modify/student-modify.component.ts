@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/models/student';
+import { Career } from 'src/app/models/career';
 //import { StudentService } from 'src/app/services/student.service';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StudentModifyComponent implements OnInit {
   private student: Student;
+  careerList = new Array<Career>();
   constructor(private studentAsyncService: StudentAsyncService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -19,6 +21,13 @@ export class StudentModifyComponent implements OnInit {
     this.studentAsyncService.getById(studentId)
       .then(response =>{
         this.student = response;
+          this.studentAsyncService.getCareerAll()
+            .then(response =>{
+              this.careerList = response;
+            })
+            .catch(error =>{
+
+            })
       })
       .catch(error =>{
 
@@ -32,6 +41,7 @@ export class StudentModifyComponent implements OnInit {
     this.student.dni = this.student.dni;
     this.student.email = this.student.email;
     this.student.address = this.student.address;
+    this.student.careerId = this.student.careerId;
 
     this.studentAsyncService.modify(this.student);
   }

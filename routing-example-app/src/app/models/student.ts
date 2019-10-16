@@ -5,4 +5,5 @@ export class Student {
     dni: string;
     email: string;
     address: string;
+    careerId: number;
 }

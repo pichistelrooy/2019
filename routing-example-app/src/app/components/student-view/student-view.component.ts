@@ -22,6 +22,7 @@ export class StudentViewComponent implements OnInit {
     this.studentAsyncService.getById(studentId)
       .then(response =>{
         this.student = response;
+        console.log(response);
       })
       .catch(error =>{
 

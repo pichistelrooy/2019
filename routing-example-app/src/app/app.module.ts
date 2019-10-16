@@ -11,6 +11,7 @@ import { StudentViewComponent } from './components/student-view/student-view.com
 import { StudentService } from './services/student.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StudentModifyComponent } from './components/student-modify/student-modify.component';
+import { CareerListComponent } from './components/career-list/career-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StudentModifyComponent } from './components/student-modify/student-modi
     StudentListComponent,
     StudentViewComponent,
     PageNotFoundComponent,
-    StudentModifyComponent
+    StudentModifyComponent,
+    CareerListComponent
   ],
   imports: [
     BrowserModule,
