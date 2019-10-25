@@ -8,10 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { StudentAddComponent } from './components/student-add/student-add.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { StudentViewComponent } from './components/student-view/student-view.component';
-import { StudentService } from './services/student.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StudentModifyComponent } from './components/student-modify/student-modify.component';
 import { CareerListComponent } from './components/career-list/career-list.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { CareerListComponent } from './components/career-list/career-list.compon
     StudentViewComponent,
     PageNotFoundComponent,
     StudentModifyComponent,
-    CareerListComponent
+    CareerListComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

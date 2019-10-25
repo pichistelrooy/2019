@@ -7,14 +7,18 @@ import { StudentListComponent } from './components/student-list/student-list.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StudentModifyComponent } from './components/student-modify/student-modify.component';
 import { CareerListComponent } from './components/career-list/career-list.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
+  { path: 'login', component : LoginComponent },
+  { path: 'register', component : RegisterComponent },
   { path: 'add', component: StudentAddComponent },
   { path: 'view/:id', component: StudentViewComponent },
   { path: 'modify/:id', component: StudentModifyComponent },
   { path: 'list', component: StudentListComponent },  
   { path: 'career', component: CareerListComponent },  
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component : PageNotFoundComponent }
 ];
 
