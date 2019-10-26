@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'modify/:id', component: StudentModifyComponent },
   { path: 'list', component: StudentListComponent },  
   { path: 'career', component: CareerListComponent },  
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component : PageNotFoundComponent }
 ];
 

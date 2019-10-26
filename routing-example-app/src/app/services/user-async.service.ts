@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserAsyncService {
+  @Output() emitEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
   private apiURL = 'https://utn2019-avanzada2-tp8.herokuapp.com/';
   constructor(private http: HttpClient) { }
 
