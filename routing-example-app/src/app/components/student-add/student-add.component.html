@@ -1,41 +1,48 @@
+
 <main class="py-5">
     <section class="mb-5">
-         <form>
+        <form [formGroup]="studentForm" (ngSubmit)='onSubmit()'>
             <div class="container">
                 <h3 class="mb-3">Add Student</h3>
                 <div class="bg-light p-4">
                     <div class="row">
                         <div class="col-lg-4">
                             <label for="">Last Name</label>
-                            <input type="text" name="lastName" [(ngModel)]="lastName" class="form-control form-control-ml" required value="">
-                        </div>                         
-                        
+                            <!--<input type="text" name="lastName" [(ngModel)]="lastName" class="form-control form-control-ml" required value="">-->
+                            <input type="text" formControlName="lastName" class="form-control form-control-ml">
+                        </div>
                         <div class="col-lg-4">
                             <label for="">First Name</label>
-                            <input type="text" name="firstName" [(ngModel)]="firstName" class="form-control form-control-ml" required value="">
+                            <!--<input type="text" name="firstName" [(ngModel)]="firstName" class="form-control form-control-ml" required value="">-->
+                            <input type="text" formControlName="firstName" class="form-control form-control-ml">
                         </div>
 
                         <div class="col-lg-4">
                             <label for="">DNI</label>
-                            <input type="text" name="dni" [(ngModel)]="dni" class="form-control form-control-ml" required value="">
+                            <!--<input type="text" name="dni" [(ngModel)]="dni" class="form-control form-control-ml" required value="">-->
+                            <input type="text" formControlName="dni" class="form-control form-control-ml">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4">
                             <label for="">Email</label>
-                            <input type="email" name="email" [(ngModel)]="email" class="form-control form-control-ml" required value="">
+                            <!--<input type="email" name="email" [(ngModel)]="email" class="form-control form-control-ml" required value="">-->
+                            <input type="email" formControlName="email" class="form-control form-control-ml">
                         </div>
 
                         <div class="col-lg-8">
                             <label for="">Address</label>
-                            <input type="text" name="address" [(ngModel)]="address" class="form-control form-control-ml" required value="">
+                            <!--<input type="text" name="address" [(ngModel)]="address" class="form-control form-control-ml" required value="">-->
+                            <input type="text" formControlName="address" class="form-control form-control-ml">
                         </div>
 
                         <div class="col-lg-4">
                             <label for="">Career</label>
-                            <select name="career" [(ngModel)]="careerId" class="form-control form-control-ml">
-                                <option *ngFor="let career of careerList" [(ngValue)]="career.careerId">{{career.name}}</option>
+                            <!--<select name="career" [(ngModel)]="careerId" class="form-control form-control-ml">-->
+                            <select formControlName="careerId" class="form-control form-control-ml">
+                                <!--<option *ngFor="let career of careerList" [(ngValue)]="career.careerId">{{career.name}}</option>-->
+                                <option *ngFor="let career of careerList" [(ngValue)]="careerId">{{career.name}}</option>
                             </select>
                         </div>
                     </div> 
@@ -44,6 +51,19 @@
                     <button type="button" class="btn btn-primary" (click)="addStudent()">Add</button>                    
                 </div>
             </div>
-         </form>
+
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                class="alert laert-danger">
+                <div *ngIf="firstName.errors.required">
+                    First name is required.
+                </div>
+                <div *ngIf="firstName.errors.minlength">
+                    First Name length must be at least 20 characters long.
+                </div>
+                <div *ngIf="firstName.errors.forbiddenName">
+                    {{ firstName.errors.forbiddenName.value }} is a forbidden name.
+                </div>
+            </div>
+        </form>
     </section>
 </main>

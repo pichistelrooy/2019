@@ -10,6 +10,7 @@ import { User } from 'src/app/models/user';
 export class LoginComponent {
   email: string;
   password: string;
+  private token: string;
 
   constructor(private UserAsyncService: UserAsyncService) { }
 
@@ -20,9 +21,9 @@ export class LoginComponent {
     user.password = this.password;
     this.UserAsyncService.login(user)
       .then(response =>{
-        //this.UserAsyncService.token = response.jwt;
+        this.UserAsyncService.token = response.jwt;
         this.UserAsyncService.emitEvent.emit(response.jwt);  
-        //console.log(this.UserAsyncService.token);
+        this.token = this.UserAsyncService.token;
       })
       .catch(error =>{
         console.log(error);

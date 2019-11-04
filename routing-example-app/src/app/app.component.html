@@ -1,21 +1,20 @@
 <!-- app.component.html -->
-<nav *ngIf='token' class="navbar navbar-expand-lg  navbar-dark bg-dark">
-   <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-         <a class="nav-link" [routerLink]="['/add']" routerLinkActive="active">Add Students</a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" [routerLink]="['/list']" routerLinkActive="active">List Students</a>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" [routerLink]="['/career']" routerLinkActive="active">List Careers</a>
-      </li>
-   </ul>
-</nav>
-
-<app-login *ngIf="!token"></app-login>
-
+<div *ngIf='token'>
+   <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+      <ul class="navbar-nav ml-auto">
+         <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">Home</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/add']" routerLinkActive="active">Add Students</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/list']" routerLinkActive="active">List Students</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/career']" routerLinkActive="active" (click)="tokenR()">List Careers</a>
+         </li>
+      </ul>
+   </nav>
+</div>
 <router-outlet></router-outlet>
- 
-
-

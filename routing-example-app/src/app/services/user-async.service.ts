@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserAsyncService {
-  @Output() emitEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() emitEvent:EventEmitter<string> = new EventEmitter<string>();
   private apiURL = 'https://utn2019-avanzada2-tp8.herokuapp.com/';
   constructor(private http: HttpClient) { }
 

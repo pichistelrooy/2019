@@ -1,4 +1,4 @@
-<main class="py-5">
+<main *ngIf='!token' class="py-5">
     <section class="mb-5">
        <form>
           <div class="container">
@@ -26,5 +26,3 @@
        </form>
     </section>
  </main>
-
- <router-outlet></router-outlet>
