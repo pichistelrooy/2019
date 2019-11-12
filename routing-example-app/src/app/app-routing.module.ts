@@ -9,15 +9,21 @@ import { StudentModifyComponent } from './components/student-modify/student-modi
 import { CareerListComponent } from './components/career-list/career-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
   { path: 'login', component : LoginComponent },
   { path: 'register', component : RegisterComponent },
-  { path: 'add', component: StudentAddComponent },
-  { path: 'view/:id', component: StudentViewComponent },
-  { path: 'modify/:id', component: StudentModifyComponent },
-  { path: 'list', component: StudentListComponent },  
-  { path: 'career', component: CareerListComponent },  
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
+    children: [
+      { path: '',pathMatch: 'full', redirectTo: 'list'},
+      { path: 'add', component: StudentAddComponent },
+      { path: 'view/:id', component: StudentViewComponent },
+      { path: 'list', component: StudentListComponent },
+      { path: 'career', component: CareerListComponent },  
+      { path: '**', component: PageNotFoundComponent }
+    ] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component : PageNotFoundComponent }
 ];

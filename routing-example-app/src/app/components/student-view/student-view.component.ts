@@ -1,6 +1,5 @@
 //student-view.component.ts
 import { Component, OnInit } from '@angular/core';
-//import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
 import { ActivatedRoute } from '@angular/router';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
@@ -20,13 +19,7 @@ export class StudentViewComponent implements OnInit {
     let studentId = Number(this.route.snapshot.paramMap.get('id'));
 
     this.studentAsyncService.getById(studentId)
-      .then(response =>{
-        this.student = response;
-        console.log(response);
-      })
-      .catch(error =>{
-
-      })
+      .subscribe(response => { this.student = response}, error => {console.log(error.message)})
   }
 
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/models/student';
-//import { StudentService } from 'src/app/services/student.service';
+//import { Career } from 'src/app/models/career';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 
 @Component({
@@ -10,24 +10,35 @@ import { StudentAsyncService } from 'src/app/services/student-async.service';
 })
 export class StudentListComponent implements OnInit {
   studentList = new Array<Student>();
-
-  //constructor(private studentService: StudentService) { }
+  students = new Array<Student>()
+  //careers = new Array<Career>()
 
   constructor(private studentAsyncService: StudentAsyncService) { }
 
   ngOnInit() {
-    //this.studentList = this.studentService.getAll();
-    this.studentAsyncService.getAll()
-      .then(response =>{
-        this.studentList = response;
-      })
-      .catch(error =>{
+    this.retrieveData()
+  }
 
+  retrieveData(){
+    this.studentAsyncService.getAll()
+      .subscribe(response => {
+          this.students = response as Student[];
+          this.mergeData();
+      },
+      error => {
+        console.log(error.message)
       })
   }
 
   remove(studentId: number){
-    //this.studentService.remove(studentId);
+    this.studentAsyncService.deleteById(studentId).subscribe(data=> console.log(data))
+    this.retrieveData();
+  }
+
+  mergeData() {
+    this.students.forEach(element => {
+      this.studentList.push(element);
+    })
   }
 
 }

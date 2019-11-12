@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { Career } from 'src/app/models/career';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
@@ -11,62 +11,51 @@ import { CustomValidator } from 'src/app/components/custom-validator';
   styleUrls: ['./student-add.component.css']
 })
 export class StudentAddComponent implements OnInit {
-  studentForm: FormGroup;
-  student: Student = new Student();
+  student = new Student()
+  studentForm: FormGroup
+  careers = new Array<Career>()
+  CustomValidator: any;
 
-  careerId : number;
-  careerList = new Array<Career>();
   constructor(private studentAsyncService: StudentAsyncService) { }
 
-  ngOnInit(): void {
-    this.student.firstName = '';
-    this.student.lastName = '';
-    this.student.dni = '';
-    this.student.email = '';
-    this.student.address = '';
-    this.student.careerId = null;
-    this.careerId = 1;
-    this.studentAsyncService.getCareerAll()
-      .then(response =>{
-        this.careerList = response;
-      })
-      .catch(error =>{
-
-    });
-
+  ngOnInit() {
     this.studentForm = new FormGroup({
-      'firstName': new FormControl(this.student.firstName,
-        [Validators.required, Validators.minLength(20),
-        CustomValidator.forbiddenNames(/Juan/)],
-        [/*ASYNC VALIDATORS*/]),
-      'lastName': new FormControl(this.student.lastName),
-      'email': new FormControl(this.student.email),
-      'dni': new FormControl(this.student.dni),
+      'firstName': new FormControl(this.student.firstName, [Validators.required,
+        Validators.minLength(20), CustomValidator.forbiddenNames(/Juan/)]),
+      'lastName': new FormControl(this.student.lastName, [Validators.required]),
+      'email': new FormControl(this.student.email, [Validators.required,CustomValidator.checkIfEmail()]),
+      'dni': new FormControl(this.student.dni, [Validators.required]),
       'address': new FormControl(this.student.address),
-      'careerId': new FormControl(this.student.careerId)
-    });
+      'careerId': new FormControl(this.student.careerId, [Validators.required]),
+    })
+    this.studentAsyncService.getCareerAll()
+      .subscribe(response => {
+          this.careers = response as Career[]
+      },
+      error => {
+        console.log(error.message)
+      })
   }
 
-  onSubmit(){};
-
-  get firstName() { return this.studentForm.get('firstName');}
-  get LastName() { return this.studentForm.get('lastName');}
-  get dni() { return this.studentForm.get('dni');}
-  get email() { return this.studentForm.get('email');}
-  get address() { return this.studentForm.get('address');}
-  //get careerId() { return this.studentForm.get('careerId');}
-
-  addStudent()
-  {
-    let studentadd = new Student();
-    studentadd.firstName = this.firstName.value;//this.student.firstName;
-    studentadd.lastName = this.LastName.value;//this.lastName;
-    studentadd.dni = this.dni.value;//this.student.dni;
-    studentadd.email = this.email.value;
-    studentadd.address = this.address.value;
-    studentadd.careerId = this.careerId;
-
-    console.log('hola' + studentadd.firstName);
-    this.studentAsyncService.add(studentadd);
+  onSubmit() {
+      this.student = <Student> this.studentForm.value;
+      this.studentAsyncService.add(this.student).subscribe(data=> console.log(data))
   }
+
+  get firstName() {
+    return this.studentForm.get('firstName');
+  }
+  get lastName() {
+    return this.studentForm.get('lastName');
+  }
+  get dni() {
+    return this.studentForm.get('dni');
+  }
+  get email() {
+    return this.studentForm.get('email');
+  }
+  get careerId() {
+    return this.studentForm.get('careerId');
+  }
+
 }

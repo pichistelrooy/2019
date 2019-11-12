@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAsyncService } from 'src/app/services/user-async.service';
+import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CustomValidator } from 'src/app/components/custom-validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,27 +11,35 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  email: string;
-  password: string;
-
-  constructor(private UserAsyncService: UserAsyncService, private route: ActivatedRoute) { }
+  signUpForm : FormGroup
+  user = new User() 
+  constructor(private userService : UserService,private route : Router) { }
 
   ngOnInit() {
+    this.signUpForm = new FormGroup ({
+      "email" : new FormControl(this.user.email, [Validators.required,CustomValidator.checkIfEmail()],[CustomValidator.checkIfEmailNotTakenSignUp(this.userService)]),
+      "password" : new FormControl(this.user.password, [Validators.required])
+    })
+  }
+  
+  onSubmit(){
+      this.user = <User> this.signUpForm.value;
+      this.userService.signUp(this.user)
+      .then(()=> alert('Registro con Exito!'))
+      .catch(()=> alert('Error en Registro!'))
+      this.signUpForm.reset();
   }
 
-  register()
-  {
-    let user = new User();
-    user.email = this.email;
-    user.password = this.password;
-    this.UserAsyncService.register(user)
-      .then(response =>{
-        console.log(response);
-        //this.route.url['/'];
-      })
-      .catch(error =>{
-        console.log(error);
-      })
+  get email(){
+    return this.signUpForm.get("email");
+  }
+
+  get password(){
+    return this.signUpForm.get("password")
+  }
+
+  goToLogIn(){
+    this.route.navigate(['./login']);
   }
 
 }

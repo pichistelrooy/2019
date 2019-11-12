@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Career } from 'src/app/models/career';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 
@@ -14,12 +14,7 @@ export class CareerListComponent implements OnInit {
 
   ngOnInit() {
     this.StudentAsyncService.getCareerAll()
-      .then(response =>{
-        this.careerList = response;
-      })
-      .catch(error =>{
-
-      })
+      .subscribe(response => { this.careerList = response}, error => {console.log(error.message)})
   }
 
 }

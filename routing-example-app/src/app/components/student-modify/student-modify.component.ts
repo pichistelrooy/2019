@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/models/student';
 import { Career } from 'src/app/models/career';
-//import { StudentService } from 'src/app/services/student.service';
 import { StudentAsyncService } from 'src/app/services/student-async.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,31 +18,11 @@ export class StudentModifyComponent implements OnInit {
     let studentId = Number(this.route.snapshot.paramMap.get('id'));
     
     this.studentAsyncService.getById(studentId)
-      .then(response =>{
-        this.student = response;
-          this.studentAsyncService.getCareerAll()
-            .then(response =>{
-              this.careerList = response;
-            })
-            .catch(error =>{
-
-            })
-      })
-      .catch(error =>{
-
-      })
+      .subscribe(response => { this.student = response}, error => {console.log(error.message)})
   }
 
-  modifyStudent()
-  {
-    this.student.firstName = this.student.firstName;
-    this.student.lastName = this.student.lastName;
-    this.student.dni = this.student.dni;
-    this.student.email = this.student.email;
-    this.student.address = this.student.address;
-    this.student.careerId = this.student.careerId;
-
-    this.studentAsyncService.modify(this.student);
+  editStudent() {
+    this.studentAsyncService.patch(this.student).subscribe(()=> {alert("Modificado con exito!")}, error => {console.log(error.message)})
   }
 
 }

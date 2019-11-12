@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { UserAsyncService } from 'src/app/services/user-async.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  private token: string;
+export class AppComponent {
+  title = 'routing-service';
+  /*private token: string;
 
   constructor(private UserAsyncService: UserAsyncService) { }
 
@@ -27,6 +27,6 @@ export class AppComponent implements OnInit{
     console.log(this.token);
     this.token = this.UserAsyncService.token;
     console.log(this.token);
-  }
+  }*/
 }
 
