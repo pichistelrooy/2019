@@ -1,9 +1,10 @@
-import { ValidatorFn, AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { ValidatorFn, AbstractControl, AsyncValidatorFn, ValidationErrors} from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 
 export class CustomValidator{
+
     static forbiddenNames(forbiddenNameRegEx: RegExp): ValidatorFn{
         return (control: AbstractControl): {[Key: string]: any} | null => {
             const forbidden = forbiddenNameRegEx.test(control.value);
@@ -21,16 +22,15 @@ export class CustomValidator{
 
     static checkIfEmailNotTakenSignUp(userService : UserService): AsyncValidatorFn {
         return (control: AbstractControl) : Observable<ValidationErrors | null> => {
-            const email = control.value.toLowerCase()
+            const email = control.value.toLowerCase();
             return userService.checkEmailNotTaken(email).pipe(
                 map(() => {
-                    return { 'emailNotUsed' : { value : true }}
+                    return null;
                 }),
                 catchError(()=> of({ 'emailTaken' : { value : true }}))
             )
         }
     }
-    
 
     static checkIfEmailTakenLogin(userService : UserService): AsyncValidatorFn {
         return (control: AbstractControl):  Observable<{[key: string]: any} | null> => {

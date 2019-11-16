@@ -11,8 +11,8 @@ const headers = { headers: new HttpHeaders({ 'Content-Type': 'Application/json' 
 })
 export class UserService {
   private apiURL = 'https://utn2019-avanzada2-tp8.herokuapp.com/';
-  token = undefined
-  redirectUrl: string
+  token = undefined;
+  redirectUrl: string;
 
   constructor(private http : HttpClient) { }
 

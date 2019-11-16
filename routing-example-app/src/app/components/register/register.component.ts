@@ -15,18 +15,19 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 export class RegisterComponent implements OnInit {
   faTimes = faTimes;
   faCheckCircle = faCheckCircle;
-  signUpForm : FormGroup
-  user = new User() 
+  signUpForm : FormGroup;
+  user = new User();
   constructor(private userService : UserService,private route : Router) { }
 
   ngOnInit() {
     this.signUpForm = new FormGroup ({
-      "email" : new FormControl(this.user.email, 
-        [Validators.required,CustomValidator.checkIfEmail()],
-        [CustomValidator.checkIfEmailNotTakenSignUp(this.userService)]),
+      "email" : new FormControl(this.user.email,{ 
+        validators: [Validators.required,CustomValidator.checkIfEmail()],
+        asyncValidators: [CustomValidator.checkIfEmailNotTakenSignUp(this.userService)],
+        updateOn: 'blur'}),
       "password" : new FormControl(this.user.password, 
         [Validators.required])
-    })
+    });
   }
   
   onSubmit(){
@@ -48,5 +49,5 @@ export class RegisterComponent implements OnInit {
   goToLogIn(){
     this.route.navigate(['./login']);
   }
-
+  
 }
