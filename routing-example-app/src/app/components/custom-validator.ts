@@ -24,7 +24,7 @@ export class CustomValidator{
             const email = control.value.toLowerCase()
             return userService.checkEmailNotTaken(email).pipe(
                 map(() => {
-                    return null ;
+                    return { 'emailNotUsed' : { value : true }}
                 }),
                 catchError(()=> of({ 'emailTaken' : { value : true }}))
             )
